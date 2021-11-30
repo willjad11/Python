@@ -57,8 +57,9 @@ class User:
             print(self.accounts[i].display_account_info())
 
     def transfer_money(self, other_user, amount, accountid, theiraccountid):
-        self.accounts[accountid].balance -= amount
-        other_user.accounts[theiraccountid].balance += amount
+        if self.accounts[accountid].balance >= amount:
+            self.accounts[accountid].balance -= amount
+            other_user.accounts[theiraccountid].balance += amount
         return self
 
 
@@ -67,7 +68,7 @@ jaden = User("Jaden Willeiksen", "email@email.com", 6)
 
 print("Monty's Accounts")
 
-monty.make_deposit(100, 0).make_deposit(50, 1).make_deposit(100, 2).make_withdrawal(100, 0).transfer_money(jaden, 50, 2, 0).accounts[1].yield_interest()
+monty.make_deposit(100, 0).make_deposit(50, 1).make_deposit(100, 2).make_withdrawal(100, 0).transfer_money(jaden, 50, 2, 5).accounts[1].yield_interest()
 monty.display_all_balances()
 
 print("Jaden's Accounts")

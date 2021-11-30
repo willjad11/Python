@@ -16,8 +16,8 @@ class BankAccount:
         return self
 
     def display_account_info(self):
-        print("Interest Rate: " + str(self.int_rate))
-        print("Balance: " + str(self.balance))
+        print("Interest Rate: " + str(self.int_rate) + "%")
+        print("Balance: $" + str(self.balance))
         return self
 
     def yield_interest(self):
@@ -53,7 +53,7 @@ class User:
     def display_all_balances(self):
         for i in range(len(self.accounts)):
             print("Account " + str(i) + ":")
-            print(str(self.accounts[i].display_account_info()))
+            print(self.accounts[i].display_account_info())
 
     def transfer_money(self, other_user, amount, accountid, theiraccountid):
         self.accounts[accountid].balance -= amount

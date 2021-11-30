@@ -18,7 +18,6 @@ class BankAccount:
     def display_account_info(self):
         print("Interest Rate: " + str(self.int_rate) + "%")
         print("Balance: $" + str(self.balance))
-        return self
 
     def yield_interest(self):
         if self.balance > 0:
@@ -47,7 +46,8 @@ class User:
         return self
 
     def display_user_balance(self, accountid):
-        print("Account " + str(accountid) + ":" + str(self.accounts[accountid].display_account_info()))
+        print("Account " + str(accountid) + ":")
+        print(self.accounts[accountid].display_account_info())
         return self
     
     def display_all_balances(self):

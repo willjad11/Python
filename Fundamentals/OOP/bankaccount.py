@@ -18,6 +18,7 @@ class BankAccount:
     def display_account_info(self):
         print("Interest Rate: " + str(self.int_rate) + "%")
         print("Balance: $" + str(self.balance))
+        #NOT returning self because the object instance ID will be printed, use this method LAST in a chain
 
     def yield_interest(self):
         if self.balance > 0:

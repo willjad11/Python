@@ -30,11 +30,50 @@ class BankAccount:
         for account in cls.all_accounts:
             print(account)
 
+class User:
+    def __init__(self, name, email, AccountNum):
+        self.name = name
+        self.email = email
+        self.accounts = []
+        for i in range(AccountNum):
+            self.accounts.append(BankAccount(0.02, 0))
 
-monty = BankAccount(0.05, 100)
-jaden = BankAccount(0.03, 0)
+    def make_deposit(self, amount, accountid):
+        self.accounts[accountid].balance += amount
+        return self
 
-monty.deposit(100).deposit(50).deposit(100).withdraw(100).yield_interest().display_account_info()
-jaden.deposit(1000).deposit(500).withdraw(100).withdraw(100).withdraw(100).withdraw(100).yield_interest().display_account_info()
+    def make_withdrawal(self, amount, accountid):
+        self.accounts[accountid].balance -= amount
+        return self
+
+    def display_user_balance(self, accountid):
+        print("Account " + str(accountid) + ":" + str(self.accounts[accountid].display_account_info()))
+        return self
+    
+    def display_all_balances(self):
+        for i in range(len(self.accounts)):
+            print("Account " + str(i) + ":")
+            print(str(self.accounts[i].display_account_info()))
+
+    def transfer_money(self, other_user, amount, accountid, theiraccountid):
+        self.accounts[accountid].balance -= amount
+        other_user.accounts[theiraccountid].balance += amount
+        return self
+
+
+monty = User("Monty Python", "monty@python.com", 3)
+jaden = User("Jaden Willeiksen", "email@email.com", 6)
+
+print("Monty's Accounts")
+
+monty.make_deposit(100, 0).make_deposit(50, 1).make_deposit(100, 2).make_withdrawal(100, 0).transfer_money(jaden, 50, 2, 0).accounts[1].yield_interest()
+monty.display_all_balances()
+
+print("Jaden's Accounts")
+
+jaden.make_deposit(1000, 4).make_deposit(500, 3).make_withdrawal(100, 4).make_withdrawal(100, 3).make_withdrawal(100, 4).make_withdrawal(100, 4).accounts[4].yield_interest()
+jaden.display_all_balances()
+
+print("All Account Instances")
 
 BankAccount.display_all_accounts()

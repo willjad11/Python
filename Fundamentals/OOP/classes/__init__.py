@@ -12,15 +12,9 @@ class Stats:
 
     def __init__( self , name):
         self.name = name
-        self.strength = (random.randint(0,10))
-        self.speed = (random.randint(0,10))
-        self.health = (math.floor(random.randint(70,100)))
-
-    def dodge(self):
-        dodge = (random.randint(math.floor(self.speed/4),self.speed+1))
-        if dodge >= self.speed:
-            print("Dodged the attack!")
-        print({dodge})
+        self.strength = random.randint(0,10)
+        self.speed = random.randint(0,10)
+        self.health = random.randint(70,100)
 
     def show_stats( self ):
         print(f"Name: {self.name}\nStrength: {self.strength}\nSpeed: {self.speed}\nHealth: {self.health}\n")
@@ -34,14 +28,14 @@ class Stats:
             2:(2,10,7,9)
         }
         if self.health > 0 and player.health > 0:
-            strength_div,strength_add,crit_check,dmg_mult = attacks[attackid]
+            strength_div, strength_add, crit_check, dmg_mult = attacks[attackid]
             attack_name = player.attack_names[attackid]
             damage_done = (random.randint(math.floor(self.strength / strength_div), self.strength + 1)) + strength_add
             player.health -= damage_done
             print(f"{self.name} hit {player.name} with a {attack_name} for {damage_done} damage!")
             if (random.randint(0,10+1)) >= crit_check:
                 player.health -= (damage_done *dmg_mult)
-                print(f"{self.name} crit for an extra " + str(math.floor(damage_done * dmg_mult)),"damage!")
+                print(f"{self.name} crit for an extra " + str(damage_done * dmg_mult),"damage!")
             print(f'{player.name} has {player.health} health!')
             print("----------------------------")
             return self,player.health

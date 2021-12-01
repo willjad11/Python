@@ -33,17 +33,9 @@ class Stats:
             1:(2,5,9,3),
             2:(2,10,7,9)
         }
-        def death(self, player):
-            if self.health <= 0:
-                print(f"{self.name} has died! {player.name} wins!")
-                BattleOver.death = True
-            else:
-                return False
-        
-        if death(self, player) == False and BattleOver.death == False:
+        if self.health > 0 and player.health > 0:
             strength_div,strength_add,crit_check,dmg_mult = attacks[attackid]
             attack_name = player.attack_names[attackid]
-
             damage_done = (random.randint(math.floor(self.strength / strength_div), self.strength + 1)) + strength_add
             player.health -= damage_done
             print(f"{self.name} hit {player.name} with a {attack_name} for {damage_done} damage!")
@@ -53,4 +45,6 @@ class Stats:
             print(f'{player.name} has {player.health} health!')
             print("----------------------------")
             return self,player.health
-    
+        elif self.health <= 0:
+            print(f"{self.name} has died! {player.name} wins!")
+            BattleOver.death = True

@@ -29,7 +29,7 @@ class Stats:
         }
         if self.health > 0 and player.health > 0:
             strength_div, strength_add, crit_check, dmg_mult = attacks[attackid]
-            attack_name = player.attack_names[attackid]
+            attack_name = self.attack_names[attackid]
             damage_done = (random.randint(math.floor(self.strength / strength_div), self.strength + 1)) + strength_add
             player.health -= damage_done
             print(f"{self.name} hit {player.name} with a {attack_name} for {damage_done} damage!")

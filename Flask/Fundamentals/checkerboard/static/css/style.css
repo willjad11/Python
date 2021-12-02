@@ -1,0 +1,26 @@
+* {
+    padding: 0px;
+    margin: -3px;
+}
+
+.tile1 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+.tile2 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+.title {
+    display: table;
+    margin: 50px auto 0px auto;
+}
+
+.checkerboard {
+    margin: 50px;
+    text-align: center;
+}

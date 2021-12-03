@@ -1,0 +1,68 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: "Roboto";
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    width: 500px;
+    background-color: darkslategray;
+    padding: 25px;
+}
+
+.title {
+    color: yellow;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    color: white;
+}
+
+.textform, .textform2 {
+    width: 80%;
+    height: 30px;
+    margin: 20px auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.textform2 {
+    height: 150px;
+    padding-top: 10px;
+}
+
+.selectform {
+    width: 80%;
+    height: 30px;
+    margin: 20px auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.box {
+    text-align: right;
+}
+
+.submit {
+    width: 80px;
+    height: 30px;
+}
+
+.table {
+    color: white;
+    font-size: large;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.table > * {
+    padding: 10px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <title>Dojo Survey Results</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1><u>Submitted Info</u></h1>
+        </div>
+        <table class="table">
+            <tr>
+                <td>Name:</td>
+                <td>{{ info.name }}</td>
+            </tr>
+            <tr>
+                <td>Dojo Location:</td>
+                <td>{{ info.location }}</td>
+            </tr>
+            <tr>
+                <td>Favorite Language:</td>
+                <td>{{ info.language }}</td>
+            </tr>
+            <tr>
+                <td>Comment:</td>
+                <td>{{ info.comment }}</td>
+            </tr>
+        </table>
+        <div class="box">
+            <form method="get" action="/">
+                <input class="submit" type='submit' value='Go Back'>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

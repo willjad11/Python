@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <title>Dojo Survey</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title"><h1>Dojo Survey</h1></div>
+        <form class="form" action='/process' method='post'>
+                <label for='name'>Name:</label>
+            <input class="textform" type='text' name='name' placeholder="Name">
+                <label for='location'>Dojo Location:</label>
+            <select class = "selectform" name="location">
+                <option value="Chicago">Chicago</option>
+                <option value="Seattle">Seattle</option>
+                <option value="Atlanta">Atlanta</option>
+                <option value="Los Angeles">Los Angeles</option>
+            </select>
+                <label for='language'>Favorite Language:</label>
+            <select class="selectform" name="language">
+                <option value="Python">Python</option>
+                <option value="Javascript">Javascript</option>
+                <option value="Java">Java</option>
+                <option value="MERN">MERN</option>
+            </select>
+                <label for='comments'>Comments (optional):</label>
+            <textarea class="textform2" name='comment'></textarea>
+            <div class="box"><input class="submit" type='submit' value='Submit'></div>
+        </form>
+    </div>
+</body>
+</html>

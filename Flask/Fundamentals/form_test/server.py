@@ -10,7 +10,8 @@ loggedin = False
 
 @app.route('/')
 def index():
-    if "session['username']" not in locals():
+    print(userdata.data)
+    if 'username' not in session:
         userauth = "None"
         loggedin = False
     else:
@@ -35,7 +36,7 @@ def login():
             print("Password is true")
             userdata.error = False
             userdata.errormsg = ""
-            userdata.data[request.form['username']][0][1] = 1
+            userdata.data[request.form['username']][0][0] = 1
             session['username'] = request.form['username']
         elif request.form['password'] != userdata.data[request.form['username']][0][0]:
             print("Wrong login info")
@@ -52,6 +53,7 @@ def login():
 def logout():
     print("User logged out")
     userdata.data[session['username']][0][1] = 0
+    session.clear()
     return redirect('/')
 
 if __name__ == "__main__":

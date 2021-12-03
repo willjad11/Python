@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Index Page</h1>
+    {% if loggedin == False %}
+    <h3>Create a User</h3>
+    {% elif loggedin == True %}
+    <h3>Hello, User!</h3>
+    {% endif %}
+
+    
+    {% if loggedin == False %}
+    <form action='/users' method='post'>
+            <label for='username'>Username:</label>
+        <input type='text' name='username'>
+            <label for='password'>Password:</label>
+        <input type='password' name='password'>
+        <input type='submit' value='Create User'>
+    </form>
+    
+    <h3>Login</h3>
+    {% if error == True %}
+    <h5 style="color: red">{{ errormsg }}</h5>
+    {% endif %}
+    <form action='/login' method='post'>
+            <label for='username'>Username:</label>
+        <input type='text' name='username'>
+            <label for='password'>Password:</label>
+        <input type='password' name='password'>
+        <input type='submit' value='Login'>
+    </form>
+    {% endif %}
+    {% if loggedin == True %}
+    <form action='/logout' method='post'>
+        <input type='submit' value='Logout'>
+    </form>
+    {% endif %}
+</body>
+</html>

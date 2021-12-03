@@ -3,9 +3,13 @@ class UserDatabase:
         pass
 
     error = False
-    
+
     errormsg = ""
 
-    loggedin = False
-
     data = {}
+
+
+class User:
+    def __init__(self, username, loggedin):
+        self.username = username
+        self.loggedin = loggedin

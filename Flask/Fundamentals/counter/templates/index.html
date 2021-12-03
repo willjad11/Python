@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <title>Counter</title>
+</head>
+<body>
+    <div class="cont">
+        <div class="title"><h1>Counter</h1></div>
+        <div class="counter">You viewed this page {{ viewnum }} times</div>
+        <div class="counter">You clicked the button {{ clicks }} times</div>
+    </div>
+    <div class="btncont">
+        <form action='/click' method='post'>
+            <input class="text" type='text' name='number'>
+            <input class="btn" type='submit' value='Add Views'>
+        </form>
+        <form action='/destroysession' method='post'>
+            <input class="btn" type='submit' value='Reset'>
+        </form>
+    </div>
+</body>
+</html>

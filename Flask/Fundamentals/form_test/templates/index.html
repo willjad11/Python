@@ -10,8 +10,9 @@
     <h1>Index Page</h1>
     {% if loggedin == False %}
     <h3>Create a User</h3>
-    {% elif loggedin == True %}
-    <h3>Hello, User!</h3>
+    {% endif %}
+    {% if loggedin == True %}
+    <h3>Hello, { userauth }!</h3>
     {% endif %}
 
     

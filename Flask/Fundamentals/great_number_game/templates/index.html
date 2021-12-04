@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <title>Great Number Game</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to the Great Number Game!!!</h1>
+        <h3>I am thinking of a number between 1 and 100</h3>
+    </div>
+    {% if loworhigh == 3 %}
+    <div class="incorrect">
+        <h2>Too high!</h2>
+    </div>
+    {% endif %}
+    {% if loworhigh == 2 %}
+    <div class="incorrect">
+        <h2>Too low!</h2>
+    </div>
+    {% endif %}
+    {% if guessesleft == 0 %}
+    <div class="incorrect">
+        <h2>You're all out of turns! The number was {{ rannum }}</h2>
+        <form class="form3" action='/playagain'>
+            <input class="submit2" type='submit' value='Play again?'>
+        </form>
+        </div>
+    </div>
+    {% endif %}
+    {% if won == True %}
+    <div class="correct">
+        <h2>You got it in {{ guesses }} guesses! The number was {{ rannum }}</h2>
+        <form class="form3" action='/playagain'>
+            <input class="submit2" type='submit' value='Play again?'>
+        </form>
+    </div>
+    {% endif %}
+    {% if guessesleft > 0 %}
+    <div class="game">
+        <p>Take a guess!!</p>
+        <form class="form2" action='/guess' method='post'>
+            <input class="text" type='text' name='guess'>
+            <input class="submit" type='submit' value='Guess!'>
+        </form>
+    </div>
+    {% endif %}
+</body>
+</html>

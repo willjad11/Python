@@ -1,0 +1,72 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+.header {
+    text-align: center;
+    margin: 25px;
+}
+.header > * {
+    padding: 10px;
+}
+.game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 400px;
+    height: 200px;
+    background-color: darkslategray;
+    margin: 0px auto;
+    border-radius: 10px;
+}
+.game > * {
+    padding: 15px;
+}
+
+.game p {
+    color: yellow;
+    font-weight: bolder;
+    font-size: larger;
+}
+.form2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.submit, .submit2 {
+    width: 75px;
+    height: 40px;
+    background-color: yellow;
+    border-radius: 10px;
+    font-size: large;
+}
+.submit2 {
+    width: 100px;
+    height: 40px;
+}
+.text {
+    width: 200px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 6px;
+    padding-left: 10px;
+}
+
+.incorrect, .correct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px auto;
+    width: 250px;
+    height: 150px;
+    background-color: orangered;
+    color: yellow;
+    text-align: center;
+}
+
+.correct {
+    background-color: greenyellow;
+    color: red;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class="cont">
+        <div class="gold">
+            Your Gold: {{ gold }}
+        </div>
+        <div class="bigbox">
+            <div class="tile">
+                <h1>Farm</h1>
+                <p>(earns 10-20 golds)</p>
+                <form action='/process_money' method='post'>
+                    <input type="hidden" name='farm'>
+                    <input class="findgold" type='submit' value='Find Gold!'>
+                </form>
+            </div>
+            <div class="tile">
+                <h1>Cave</h1>
+                <p>(earns 5-10 golds)</p>
+                <form action='/process_money' method='post'>
+                    <input type="hidden" name='cave'>
+                    <input class="findgold" type='submit' value='Find Gold!'>
+                </form>
+            </div>
+            <div class="tile">
+                <h1>House</h1>
+                <p>(earns 2-5 golds)</p>
+                <form action='/process_money' method='post'>
+                    <input type="hidden" name='house'>
+                    <input class="findgold" type='submit' value='Find Gold!'>
+                </form>
+            </div>
+            <div class="tile">
+                <h1>Casino</h1>
+                <p>(earns/takes 0-50 golds)</p>
+                <form action='/process_money' method='post'>
+                    <input type="hidden" name='casino'>
+                    <input class="findgold" type='submit' value='Find Gold!'>
+                </form>
+            </div>
+        </div>
+        <h2 class="act-title">Activities:</h2>
+        <div class="activities" name='activities'>
+            {% for i in activities %}
+            {% if lostmoney == False %}
+            <p style="color:green">{{ i }}</p><br>
+            {% endif %}
+            {% if lostmoney == True %}
+            <p style="color:red">{{ i }}</p><br>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

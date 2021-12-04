@@ -15,7 +15,13 @@ def index():
         userauth = "None"
         loggedin = False
     else:
-        userauth = session['username']
+        if userdata.data[session['username']][0][1] == 1:
+            loggedin = True
+            userauth = session['username']
+        elif userdata.data[session['username']][0][1] == 0:
+            loggedin = False
+            userauth = "None"
+
         loggedin = True
     return render_template("index.html", userauth=userauth, error=userdata.error, errormsg=userdata.errormsg, loggedin=loggedin)
 
@@ -53,7 +59,6 @@ def login():
 def logout():
     print("User logged out")
     userdata.data[session['username']][0][1] = 0
-    session.clear()
     return redirect('/')
 
 if __name__ == "__main__":

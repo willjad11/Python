@@ -22,7 +22,7 @@
         <h2>Too low!</h2>
     </div>
     {% endif %}
-    {% if guessesleft == 0 %}
+    {% if guessesleft == 0 and won == False %}
     <div class="incorrect">
         <h2>You're all out of turns! The number was {{ rannum }}</h2>
         <form class="form3" action='/playagain'>

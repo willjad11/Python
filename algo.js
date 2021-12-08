@@ -1,27 +1,38 @@
+const arr1 = [1, 2, 3];
+const separator1 = ", ";
+const expected1 = "1, 2, 3";
 
-const str1 = "aaaabbcddddooopppvvvvvfffddwwwww";
+const arr2 = [1, 2, 3];
+const separator2 = "-";
+const expected2 = "1-2-3";
 
-function encodeStr(str){
+const arr3 = [1, 2, 3];
+const separator3 = " - ";
+const expected3 = "1 - 2 - 3";
 
-    let count = 1;
-    let newstring = "";
+const arr4 = [1];
+const separator4 = ", ";
+const expected4 = "1";
 
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] == str[i - 1]) {
-            count ++;
+const arr5 = [];
+const separator5 = ", ";
+const expected5 = "";
+
+function join(arr, separator) {
+    newStr = "";
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == arr.length) {
+            newStr += arr[i];
         }
-        if (i == str.length - 1) {
-            newstring += str[i] + count;
-        }
-        else if (str[i] !== str[i - 1] && i - 1 > 0) {
-            newstring += str[i - 1] + count
-            count = 1;
-        }
-        else if (str[i] !== str[i - 1] && str[i] !== str[i + 1]) {
-            newstring += str[i] + "1";
+        else {
+            newStr += arr[i] + separator;
         }
     }
-    console.log(newstring)
+    console.log(newStr)
 }
 
-encodeStr(str1)
+join(arr1, separator1)
+join(arr2, separator2)
+join(arr3, separator3)
+join(arr4, separator4)
+join(arr5, separator5)

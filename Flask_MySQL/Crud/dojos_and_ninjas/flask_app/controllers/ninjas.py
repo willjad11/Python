@@ -74,7 +74,7 @@ def delete_ninja_page(id):
 @app.route('/ninja/delete/<int:id>/confirm', methods=["POST"])
 def delete_ninja(id):
     data = {
-        "id": id,
+        "id": request.form["id"]
     }
     Ninja.delete(data)
     return redirect('/ninja')

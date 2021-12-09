@@ -64,7 +64,7 @@ def delete_dojo_page(id):
 @app.route('/dojo/delete/<int:id>/confirm', methods=["POST"])
 def delete_dojo(id):
     data = {
-        "id": id,
+        "id": request.form["id"]
     }
     Dojo.delete(data)
     return redirect('/dojo')

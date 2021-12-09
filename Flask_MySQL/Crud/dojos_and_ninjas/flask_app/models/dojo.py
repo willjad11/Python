@@ -39,15 +39,12 @@ class Dojo:
 
     @classmethod
     def delete(cls, data):
+        query = "UPDATE ninjas SET dojo_id = 6 WHERE dojo_id = %(id)s;"
+        connectToMySQL('dojoninja').query_db(query, data)
         query = "DELETE FROM dojos WHERE id = %(id)s;"
         return connectToMySQL('dojoninja').query_db(query, data)
 
     @classmethod
     def show(cls, data):
         query = "SELECT * FROM dojos WHERE id = %(id)s;"
-        return connectToMySQL('dojoninja').query_db(query, data)
-
-    @classmethod
-    def showninjas(cls, data):
-        query = "SELECT dojos.name, ninjas.first_name, ninjas.last_name, ninjas.age FROM dojos JOIN ninjas WHERE dojos.id = ninjas.dojo_id AND dojos.id = %(id)s;"
         return connectToMySQL('dojoninja').query_db(query, data)

@@ -43,8 +43,3 @@ class Ninja:
     def show(cls, data):
         query = "SELECT * FROM ninjas WHERE id = %(id)s;"
         return connectToMySQL('dojoninja').query_db(query, data)
-
-    @classmethod
-    def showdojo(cls, data):
-        query = "SELECT ninjas.first_name, ninjas.last_name, ninjas.age, dojos.name FROM ninjas JOIN dojos WHERE dojos.id = ninjas.dojo_id AND ninjas.id = %(id)s;"
-        return connectToMySQL('dojoninja').query_db(query, data)

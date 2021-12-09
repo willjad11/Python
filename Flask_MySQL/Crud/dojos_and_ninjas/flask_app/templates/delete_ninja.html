@@ -16,7 +16,7 @@
     <Center>
         <h1>Are you sure you want to delete Ninja {{ id }}?</h1>
         <form action="/ninja/delete/{{ id }}/confirm" method="POST">
-        <input type="hidden" name="{{ id }}">
+        <input type="hidden" id="id" name="id" value="{{ id }}">
         <input class="btn btn-primary" type="submit" value="Delete Ninja {{ id }}" />
         </form>
     </Center>

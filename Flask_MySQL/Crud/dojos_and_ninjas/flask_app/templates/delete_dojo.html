@@ -15,8 +15,9 @@
     <div class="text-end"><a href="/dojo">Back to Dojo Home</a></div>
     <Center>
         <h1>Are you sure you want to Dojo {{ id }}?</h1>
+        <h3>All associated ninjas will be moved to placeholder dojo!</h3>
         <form action="/dojo/delete/{{ id }}/confirm" method="POST">
-        <input type="hidden" name="{{ id }}">
+        <input type="hidden" id="id" name="id" value="{{ id }}">
         <input class="btn btn-primary" type="submit" value="Delete Dojo {{ id }}" />
         </form>
     </Center>>

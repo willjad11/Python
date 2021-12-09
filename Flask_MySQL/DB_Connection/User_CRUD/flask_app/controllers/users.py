@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, redirect
-# import the class from friend.py
-from user import User
-app = Flask(__name__)
+# burgers.py
+from flask_app import app
+from flask import render_template, redirect, request
+from flask_app.models.user import User
 
 
 @app.route('/user')
@@ -72,6 +72,3 @@ def delete_user(id):
     }
     User.delete(data)
     return redirect('/user')
-
-if __name__ == "__main__":
-    app.run(debug=True)

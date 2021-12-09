@@ -35,3 +35,22 @@ class User:
         query = "INSERT INTO users ( first_name, last_name, email, created_at, updated_at ) VALUES ( %(fname)s , %(lname)s , %(em)s , NOW() , NOW() );"
         # data is a dictionary that will be passed into the save method from server.py
         return connectToMySQL('users').query_db(query, data)
+    
+    @classmethod
+    def edit(cls, data):
+        query = "UPDATE users SET first_name = %(fname)s, last_name = %(lname)s, email = %(em)s, updated_at = NOW() WHERE id = %(id)s;"
+        # data is a dictionary that will be passed into the save method from server.py
+        return connectToMySQL('users').query_db(query, data)
+
+    @classmethod
+    def delete(cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s"
+        # data is a dictionary that will be passed into the save method from server.py
+        return connectToMySQL('users').query_db(query, data)
+
+
+    @classmethod
+    def show(cls, data):
+        query = "SELECT * FROM users WHERE id = %(id)s"
+        # data is a dictionary that will be passed into the save method from server.py
+        return connectToMySQL('users').query_db(query, data)

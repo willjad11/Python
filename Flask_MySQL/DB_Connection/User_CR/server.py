@@ -19,16 +19,58 @@ def usernew():
 
 @app.route('/user/new/create', methods=["POST"])
 def create_user():
-    # First we make a data dictionary from our request.form coming from our template.
-    # The keys in data need to line up exactly with the variables in our query string.
+
     data = {
         "fname": request.form["fname"],
         "lname": request.form["lname"],
         "em": request.form["em"]
     }
-    # We pass the data dictionary into the save method from the Friend class.
     User.save(data)
-    # Don't forget to redirect after saving to the database.
+    return redirect('/user')
+
+
+@app.route('/user/show/<int:id>')
+def show_user(id):
+    data = {
+        "id": id,
+    }
+    info = User.show(data)
+    return render_template('show.html', id=id, info=info)
+
+
+@app.route('/user/edit/<int:id>')
+def edit_user_page(id):
+    data = {
+        "id": id,
+    }
+    info = User.show(data)
+    return render_template('edit.html', id=id, info=info)
+
+
+@app.route('/user/edit/<int:id>/update', methods=["POST"])
+def edit_user(id):
+    data = {
+        "id": id,
+        "fname": request.form["fname"],
+        "lname": request.form["lname"],
+        "em": request.form["em"]
+    }
+    User.edit(data)
+    return redirect('/user')
+
+
+@app.route('/user/delete/<int:id>')
+def delete_user_page(id):
+    pass
+    return render_template('delete.html', id=id)
+
+
+@app.route('/user/delete/<int:id>/confirm', methods=["POST"])
+def delete_user(id):
+    data = {
+        "id": id,
+    }
+    User.delete(data)
     return redirect('/user')
 
 if __name__ == "__main__":

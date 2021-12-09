@@ -61,7 +61,7 @@ def delete_dojo_page(id):
     return render_template('delete_dojo.html', id=id)
 
 
-@app.route('/user/delete/<int:id>/confirm', methods=["POST"])
+@app.route('/dojo/delete/<int:id>/confirm', methods=["POST"])
 def delete_dojo(id):
     data = {
         "id": id,

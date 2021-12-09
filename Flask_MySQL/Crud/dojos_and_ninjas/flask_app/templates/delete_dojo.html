@@ -15,7 +15,7 @@
     <div class="text-end"><a href="/dojo">Back to Dojo Home</a></div>
     <Center>
         <h1>Are you sure you want to Dojo {{ id }}?</h1>
-        <form action="/user/delete/{{ id }}/confirm" method="POST">
+        <form action="/dojo/delete/{{ id }}/confirm" method="POST">
         <input type="hidden" name="{{ id }}">
         <input class="btn btn-primary" type="submit" value="Delete Dojo {{ id }}" />
         </form>

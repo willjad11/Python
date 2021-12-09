@@ -29,8 +29,12 @@
                 <td>{{ninja.first_name}}</td>
                 <td>{{ninja.last_name}}</td>
                 <td>{{ninja.age}}</td>
-                <td>{{ all_dojos[ninja.dojo_id - 1]['name'] }}</td>
-                <td><a href="/ninja/show/{{ninja.id}}">Show Ninja</a> | <a href="/dojo/show/{{ ninja.dojo_id }}"><b>Show Dojo</b></a> | <a href="/ninja/edit/{{ninja.id}}">Edit Ninja</a> | <a href="/ninja/delete/{{ninja.id}}">Delete Ninja</a></td>
+                {% for dojo in all_dojos %}
+                    {% if dojo.id == ninja.dojo_id %}
+                        <td>{{ dojo.name }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td><a href="/ninja/show/{{ninja.id}}">Show Ninja</a> | <a href="/dojo/show/{{ ninja.dojo_id }}"><b></b>Show Dojo</a> | <a href="/ninja/edit/{{ninja.id}}">Edit Ninja</a> | <a href="/ninja/delete/{{ninja.id}}">Delete Ninja</a></td>
             </tr>
             {% endfor %}
         </tbody>

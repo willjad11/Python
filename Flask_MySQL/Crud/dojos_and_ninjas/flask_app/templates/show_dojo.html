@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Showing dojo {{ id }}</title>
+</head>
+<body>
+    <div class="text-end"><a href="/ninja">Back to Ninja Home</a></div>
+    <div class="text-end"><a href="/dojo">Back to Dojo Home</a></div>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            {% for info in dojo %}
+            <h5 class="card-title">{{ info.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Dojo Card</h6>
+            <p class="card-text">Ninjas Enrolled: <br>
+                {% set comma = joiner("| ") %}
+                {% for ninja in ninjas %}
+                {% if ninja['dojo_id'] == id %}
+                {{ comma() }}<a href="/ninja/show/{{ ninja.id }}">{{ ninja.first_name }} {{ ninja.last_name}}</a>
+                {% endif %}
+                {% endfor %}
+            </p>
+            <p class="card-text">Created On: {{ info.created_at }}</p>
+            <p class="card-text">Updated At: {{ info.updated_at }}</p>
+            {% endfor %}
+            <a href="/dojo/edit/{{ id }}" class="card-link">Edit Dojo</a>
+            <a href="/dojo/delete/{{ id }}" class="card-link">Delete Dojo</a>
+        </div>
+    </div>
+</body>
+</html>

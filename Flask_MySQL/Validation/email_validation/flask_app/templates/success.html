@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Email Success!</title>
+</head>
+
+<body>
+    <div class="thanks">
+        The email address you entered is {{myemail }}, it is a VALID email address! Thank you!
+    </div>
+    <div class="box">
+        <table>
+            <tr>
+                <th>Email Addresses</th>
+            </tr>
+            {% for email in emails %}
+            <tr>
+                <td>{{ email.email }} - {{ email.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>

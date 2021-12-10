@@ -49,3 +49,8 @@ class Email:
                 flash("Duplicate email address.")
                 is_dup = True
         return is_dup
+
+    @staticmethod
+    def delete(data):
+        query = "DELETE FROM email where email = %(email)s;"
+        return connectToMySQL('emails').query_db(query, data)

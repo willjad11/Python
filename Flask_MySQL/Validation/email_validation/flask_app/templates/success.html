@@ -10,7 +10,7 @@
 
 <body>
     <div class="thanks">
-        The email address you entered is {{myemail }}, it is a VALID email address! Thank you!
+        The email address you entered is {{ myemail }}, it is a VALID email address! Thank you!
     </div>
     <div class="box">
         <table>
@@ -19,8 +19,16 @@
             </tr>
             {% for email in emails %}
             <tr>
-                <td>{{ email.email }} - {{ email.created_at }}</td>
+                <td class="result">
+                    {{ email.email }} - {{ email.created_at }}
+                </td>
             </tr>
+            {% if email.email == myemail %}
+            <form action="/deleteemail" method="POST">
+                <input type="hidden" name="email" value="{{ email.email }}">
+                <input class="delete" type="submit" value="Delete {{ email.email }}">
+            </form>
+            {% endif %}
             {% endfor %}
         </table>
     </div>

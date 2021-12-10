@@ -22,6 +22,17 @@ def add_email():
 
 
 @app.route('/show')
-def show_index():
+def email_success():
     emails = Email.get_all()
     return render_template("success.html", emails=emails, myemail=session['email'])
+
+
+@app.route('/deleteemail', methods=['POST'])
+def delete_email():
+    data = {
+        "email": request.form["email"]
+    }
+    if session['email'] == request.form["email"]:
+        Email.delete(data)
+        session.clear()
+    return redirect("/")

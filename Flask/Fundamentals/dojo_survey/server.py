@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, flash
+from mysqlconnection import connectToMySQL
 
 app = Flask(__name__)
 app.secret_key = 'dojosurvey'
@@ -13,10 +14,14 @@ def surveypage():
 def process():
     if not validate_form(request.form):
         return redirect('/')
-    session['name'] = request.form['name']
-    session['location'] = request.form['location']
-    session['language'] = request.form['language']
-    session['comment'] = request.form['comment']
+
+    data = {
+        "name": request.form['name'],
+        "location": request.form['location'],
+        "language": request.form['language'],
+        "comment": request.form['comment']
+    }
+    save(data)
     return redirect('/result')
 
 
@@ -24,6 +29,9 @@ def process():
 def result():
     return render_template("result.html", info=session)
 
+def save(data):
+    query = "INSERT INTO dojos (name, location, language, comment, created_at,updated_at) VALUES (%(name)s,%(location)s,%(language)s,%(comment)s,NOW(),NOW())"
+    return connectToMySQL('survey').query_db(query, data)
 
 @staticmethod
 def validate_form(form):

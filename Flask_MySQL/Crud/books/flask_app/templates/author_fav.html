@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+
+    <title>Authors Favorites</title>
+</head>
+
+<body>
+    <div class="cont">
+        <div class="box1">
+            <div class="title">
+                <h1>{{ author[0].name }}'s Favorites</h1>
+            </div>
+            <div class="formcont">
+                <div class="form">
+                    <table class="table">
+                        <tr class="table-c">
+                            <th class="table-c">Title</th>
+                            <th class="table-c"># of Pages</th>
+                        </tr>
+                        {% for fav in favs %}
+                        <tr class="table-c">
+                            <td class="table-c">{{ fav.title }}</td>
+                            <td class="table-c">{{ fav.num_of_pages }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <a href="/authors">Home</a>
+        </div>
+        <div class="box2">
+            <div class="title">
+                <h1>Add Author's Favorite</h1>
+            </div>
+            <div class="form">
+                <form action="/authors/{{ author[0].id }}/add" method="POST">
+                    <div class="form-group">
+                        <label for="id">Book:</label>
+                        <select name="id" id="id">
+                            {% for notfav in notfavs %}
+                            <option value="{{ notfav.id }}">{{ notfav.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" name="authorid" value="{{ author[0].id }}">
+                    </div>
+                    <button type="submit" class="subbtn">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -18,7 +18,7 @@ def success():
         return redirect("/")
     userid = session['user_id']
     firstname = session['first_name']
-    lastname = session['first_name']
+    lastname = session['last_name']
     loggedin = session['logged_in']
     return render_template("success.html", userid=userid, firstname=firstname, lastname=lastname, loggedin=loggedin)
 
@@ -66,7 +66,7 @@ def register():
         flash("Invalid email address!", 'register')
         return redirect('/')
     if not User.validate_pass(request.form['pas']):
-        flash("Password must be minimum eight characters, at least one uppercase letter, one lowercase letter and one number!", 'register')
+        flash("Password must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character!", 'register')
         return redirect('/')
     if request.form['pas'] != request.form['cpas']:
         flash("Passwords do not match!", 'register')
@@ -91,6 +91,6 @@ def register():
     # store user id into session
     session['user_id'] = user_id
     session['first_name'] = User.get_by_id({"id": user_id}).first_name
-    session['last_name'] = User.get_by_id({"id": user_id}).first_name
+    session['last_name'] = User.get_by_id({"id": user_id}).last_name
     session['logged_in'] = True
     return redirect("/success")

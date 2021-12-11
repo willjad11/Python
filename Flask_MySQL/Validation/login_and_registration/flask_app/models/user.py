@@ -3,6 +3,7 @@ from flask import flash
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+PASS_REGEX = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$')
 
 class User:
 
@@ -44,6 +45,14 @@ class User:
         is_valid = True
         # test whether a field matches the pattern
         if not EMAIL_REGEX.match(email['em']):
+            is_valid = False
+        return is_valid
+    
+    @staticmethod
+    def validate_pass(pas):
+        is_valid = True
+        # test whether a field matches the pattern
+        if not PASS_REGEX.match(pas):
             is_valid = False
         return is_valid
     

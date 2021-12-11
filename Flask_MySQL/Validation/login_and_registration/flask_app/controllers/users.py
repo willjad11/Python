@@ -65,8 +65,8 @@ def register():
     if not User.validate_email(request.form):
         flash("Invalid email address!", 'register')
         return redirect('/')
-    if len(request.form['pas']) < 7:
-        flash("Password needs to be at least 7 characters!", 'register')
+    if not User.validate_pass(request.form['pas']):
+        flash("Password must be minimum eight characters, at least one uppercase letter, one lowercase letter and one number!", 'register')
         return redirect('/')
     if request.form['pas'] != request.form['cpas']:
         flash("Passwords do not match!", 'register')

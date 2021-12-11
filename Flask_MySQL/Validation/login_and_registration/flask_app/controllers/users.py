@@ -14,10 +14,13 @@ def index():
 
 @app.route('/success')
 def success():
+    if 'user_id' not in session:
+        return redirect("/")
     userid = session['user_id']
     firstname = session['first_name']
     lastname = session['first_name']
-    return render_template("success.html", userid=userid, firstname=firstname, lastname=lastname)
+    loggedin = session['logged_in']
+    return render_template("success.html", userid=userid, firstname=firstname, lastname=lastname, loggedin=loggedin)
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -38,8 +41,16 @@ def login():
     session['user_id'] = user_in_db.id
     session['first_name'] = user_in_db.first_name
     session['last_name'] = user_in_db.last_name
+    session['logged_in'] = True
     # never render on a post!!!
     return redirect("/success")
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    if int(request.form['id']) == int(session['user_id']):
+        session.clear()
+    return redirect("/")
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -60,6 +71,12 @@ def register():
     if request.form['pas'] != request.form['cpas']:
         flash("Passwords do not match!", 'register')
         return redirect('/')
+    data = {
+        "em": request.form['em']
+    }
+    if User.is_duplicate(data):
+        flash("Email is already registered with another account.", 'register')
+        return redirect('/')
     pw_hash = bcrypt.generate_password_hash(request.form['pas'])
     print(pw_hash)
     # put the pw_hash into the data dictionary
@@ -75,4 +92,5 @@ def register():
     session['user_id'] = user_id
     session['first_name'] = User.get_by_id({"id": user_id}).first_name
     session['last_name'] = User.get_by_id({"id": user_id}).first_name
+    session['logged_in'] = True
     return redirect("/success")

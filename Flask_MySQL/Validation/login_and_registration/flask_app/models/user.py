@@ -46,3 +46,13 @@ class User:
         if not EMAIL_REGEX.match(email['em']):
             is_valid = False
         return is_valid
+    
+    @staticmethod
+    def is_duplicate(data):
+        is_dup = False
+        query = "SELECT * FROM email where email = %(email)s;"
+        results = connectToMySQL('emails').query_db(query, data)
+        if results:
+            if results[0]['email'] == data['email']:
+                is_dup = True
+        return is_dup

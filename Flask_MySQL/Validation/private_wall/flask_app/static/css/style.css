@@ -1,0 +1,176 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: "Roboto";
+}
+
+.cont {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.box1 {
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    width: 500px;
+    background-color: darkslategray;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.box2 {
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    width: 500px;
+    height: 275px;
+    background-color: darkslategray;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.title {
+    color: yellow;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    color: white;
+}
+
+.textform, .textform2 {
+    width: 80%;
+    height: 30px;
+    margin: 20px auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.textform2 {
+    height: 150px;
+    padding-top: 10px;
+}
+
+.selectform {
+    width: 80%;
+    height: 30px;
+    margin: 20px auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.box {
+    text-align: right;
+}
+
+.submit, .logout {
+    margin: 10px 0px 10px;
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.logout {
+    margin: 0px;
+}
+
+.table {
+    color: white;
+    font-size: large;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.table > * {
+    padding: 10px;
+}
+
+.error {
+    color: red;
+    position: absolute;
+}
+
+.msgcont {
+    background-color: lightblue;
+    border-radius: 15px;
+    margin-top: 25px;
+}
+
+.author {
+    margin: 5px 15px 5px;
+}
+
+.text {
+    margin: 5px 35px 5px;
+}
+
+.time {
+    font-weight: light;
+    color: gray;
+    text-align: right;
+    margin: 5px 15px 5px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    border-bottom: 3px solid black;
+}
+
+.navleft, .navright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.sendcont {
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.select {
+    width: 200px;
+    height: 30px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    margin: 10px 0px 10px;
+}
+
+.textarea {
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.alert {
+    font-weight: bolder;
+    color: lightgreen;
+    position: absolute;
+}
+
+.msghead {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delbtn {
+    text-align: right;
+    margin: 5px 15px 5px;
+}
+
+.nomsg {
+    margin: 0px auto;
+    padding-top: 75px;
+    color: yellow;
+}

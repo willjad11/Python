@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{{ firstname }}'s Wall</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navleft">
+            <h1>CodingDojo Wall</h1>
+        </div>
+        <div class="navright">
+            <h2>Welcome, {{ firstname }}!</h2>
+            {% if loggedin == True %}
+            <form class="form" action='/logout' method='POST'>
+                <input type="hidden" name="id" value="{{ userid }}">
+                <input class="logout" type='submit' value='Log out'>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    <div class="cont">
+        <div class="box1">
+            <div class="title">
+                {% if messages %}
+                <h1>{{ messages|length }} message(s) for you</h1>
+                {% endif %}
+                {% if not messages %}
+                <h1>0 message(s) for you</h1>
+                {% endif %}
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="msgcont">
+                        <div class="msghead">
+                            <div class="author">
+                                {{ message.sender_first_name}} {{ message.sender_last_name}} said 
+                            </div>
+                            <div class="delbtn">
+                                <form class="deletemsg" action='/deletemessage' method='POST'>
+                                    <input type="hidden" name="mid" value="{{ message.id }}">
+                                    <input type="hidden" name="rid" value="{{ message.recipient_id }}">
+                                    <input type='submit' value='X'>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="text">
+                            {{ message.message }}
+                        </div>
+                        <p class="time">{{ message.since_created}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if not messages %}
+            <p class="nomsg">No messages.</p>
+            {% endif %}
+        </div>
+        <div class="box2">
+            <div class="title">
+                <h1>Send a Message</h1>
+                <h4>~You have sent {{ count[0]['count'] }} message(s)</h4>
+            </div>
+            <div class="sendcont">
+                {% for msg in get_flashed_messages(category_filter=["sendmsg"]) %}
+                <p class="alert">{{ msg }}</p>
+                {% endfor %}
+                {% for msg in get_flashed_messages(category_filter=["sendmsg2"]) %}
+                <p class="error">{{ msg }}</p>
+                {% endfor %}
+                <form class="form" action='/sendmessage' method='POST'>
+                <input type="hidden" name="sid" value="{{ userid }}">
+                <select name="rid" class="select">
+                    {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.first_name}} {{ user.last_name }}</option>
+                    {% endfor %}
+                </select>
+                <textarea name="msg" class="textarea" rows="4" cols="50"></textarea>
+                <input class="submit" type='submit' value='Send'>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

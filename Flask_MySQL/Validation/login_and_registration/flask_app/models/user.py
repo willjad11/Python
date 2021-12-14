@@ -59,8 +59,8 @@ class User:
     @staticmethod
     def is_duplicate(data):
         is_dup = False
-        query = "SELECT * FROM email where email = %(email)s;"
-        results = connectToMySQL('emails').query_db(query, data)
+        query = "SELECT * FROM users where email = %(email)s;"
+        results = connectToMySQL('register').query_db(query, data)
         if results:
             if results[0]['email'] == data['email']:
                 is_dup = True

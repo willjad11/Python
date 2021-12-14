@@ -52,43 +52,34 @@ def logout():
         session.clear()
     return redirect("/")
 
+
 @app.route('/register', methods=['POST'])
 def register():
-    # validate the form here ...
-    # create the hash
-    if len(request.form['fname']) < 3:
-        flash("First name must be at least 3 characters in length.", 'register')
+    if len(request.form['fname']) < 2:
+        flash("First name must be at least 2 characters in length.", 'register1')
         return redirect('/')
-    if len(request.form['lname']) < 3:
-        flash("Last name must be at least 3 characters in length.", 'register')
+    if len(request.form['lname']) < 2:
+        flash("Last name must be at least 2 characters in length.", 'register2')
         return redirect('/')
     if not User.validate_email(request.form):
-        flash("Invalid email address!", 'register')
+        flash("Invalid email address!", 'register3')
+        return redirect('/')
+    if User.is_duplicate({"email": request.form['em']}):
+        flash("Email is already registered with another account.", 'register3')
         return redirect('/')
     if not User.validate_pass(request.form['pas']):
-        flash("Password must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character!", 'register')
+        flash("Password must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character!", 'register4')
         return redirect('/')
     if request.form['pas'] != request.form['cpas']:
-        flash("Passwords do not match!", 'register')
-        return redirect('/')
-    data = {
-        "em": request.form['em']
-    }
-    if User.is_duplicate(data):
-        flash("Email is already registered with another account.", 'register')
+        flash("Passwords do not match!", 'register4')
         return redirect('/')
     pw_hash = bcrypt.generate_password_hash(request.form['pas'])
-    print(pw_hash)
-    # put the pw_hash into the data dictionary
-    data = {
+    user_id = User.register({
         "fname": request.form['fname'],
         "lname": request.form['lname'],
         "em": request.form['em'],
         "pas": pw_hash
-    }
-    # Call the save @classmethod on User
-    user_id = User.register(data)
-    # store user id into session
+    })
     session['user_id'] = user_id
     session['first_name'] = User.get_by_id({"id": user_id}).first_name
     session['last_name'] = User.get_by_id({"id": user_id}).last_name

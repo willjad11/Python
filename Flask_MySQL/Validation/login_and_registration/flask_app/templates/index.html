@@ -15,20 +15,25 @@
             <div class="title">
                 <h1>Register</h1>
             </div>
-            {% with messages = get_flashed_messages(category_filter=["register"]) %}
-            {% if messages %}
-            {% for message in messages %}
-            <p class="error">{{message}}</p>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
             <form class="form" action='/register' method='POST'>
                 <label for='fname'>First Name:</label>
+                {% for error in get_flashed_messages(category_filter=["register1"]) %}
+                <p class="error">{{ error }}</p>
+                {% endfor %}
                 <input class="textform" type='text' name='fname'>
+                {% for error in get_flashed_messages(category_filter=["register2"]) %}
+                <p class="error">{{ error }}</p>
+                {% endfor %}
                 <label for='lname'>Last Name:</label>
                 <input class="textform" type='text' name='lname'>
+                {% for error in get_flashed_messages(category_filter=["register3"]) %}
+                <p class="error">{{ error }}</p>
+                {% endfor %}
                 <label for='em'>Email:</label>
                 <input class="textform" type='text' name='em'>
+                {% for error in get_flashed_messages(category_filter=["register4"]) %}
+                <p class="error">{{ error }}</p>
+                {% endfor %}
                 <label for='pas'>Password:</label>
                 <input class="textform" type='password' name='pas'>
                 <label for='cpas'>Confirm Password:</label>

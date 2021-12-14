@@ -19,8 +19,7 @@ def index():
 def dashboard():
     if 'user_id' not in session:
         return redirect("/")
-    return render_template("dashboard.html", userid=session['user_id'], firstname=session['first_name'], 
-    lastname=session['last_name'], loggedin=session['logged_in'], recipes=Recipe.get_all())
+    return render_template("dashboard.html", userid=session['user_id'], firstname=session['first_name'], recipes=Recipe.get_all())
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -36,7 +35,6 @@ def login():
     session['user_id'] = user_in_db.id
     session['first_name'] = user_in_db.first_name
     session['last_name'] = user_in_db.last_name
-    session['logged_in'] = True
     return redirect("/dashboard")
 
 

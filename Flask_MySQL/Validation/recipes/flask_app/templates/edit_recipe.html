@@ -46,7 +46,7 @@
             <p class="error">{{ error }}</p>
             {% endfor %}
             <label for='date'>Date Made On:</label>
-            <input class="date" type='date' name='date' value="{{ recipe.date }}">
+            <input class="date" type='date' name='date' value="{{ recipe.date_made }}">
             {% for error in get_flashed_messages(category_filter=["recipe5"]) %}
             <p class="error">{{ error }}</p>
             {% endfor %}

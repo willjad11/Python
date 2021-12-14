@@ -53,7 +53,7 @@ class Message:
         '''
         return connectToMySQL("wall").query_db(query, data)
 
-    @staticmethod
+
     def verify_message(data):
         verified = False
         query = '''
@@ -63,6 +63,7 @@ class Message:
         WHERE recipients.id = %(rid)s AND messages.id = %(mid)s;
         '''
         results = connectToMySQL("wall").query_db(query, data)
+        print(results)
         if results:
             verified = True
         return verified

@@ -28,12 +28,12 @@ def delete_message():
         "mid": request.form["mid"]
     }
     if int(request.form['rid']) != int(session['user_id']):
-        redirect('/stop')
+        return redirect('/stop')
     if not Message.verify_message(data):
-        redirect('/stop')
+        return redirect('/stop')
     Message.delete_message(data)
     return redirect('/wall')
 
-@app.route('/stop', methods=['POST'])
+@app.route('/stop')
 def stop():
     return render_template("stop.html")

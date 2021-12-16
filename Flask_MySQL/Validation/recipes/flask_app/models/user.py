@@ -1,6 +1,10 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask import flash
+from flask_app import app
+from flask import flash, session
+from flask_bcrypt import Bcrypt
 import re
+
+bcrypt = Bcrypt(app)
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 PASS_REGEX = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$')
@@ -63,3 +67,44 @@ class User:
             if results[0]['email'] == data['email']:
                 is_dup = True
         return is_dup
+
+    @staticmethod
+    def validate_registration(form):
+        valid = True
+        if len(form['fname']) < 2:
+            flash("First name must be at least 2 characters in length.", 'register1')
+            valid = False
+        if len(form['lname']) < 2:
+            flash("Last name must be at least 2 characters in length.", 'register2')
+            valid = False
+        if not User.validate_email(form):
+            flash("Invalid email address!", 'register3')
+            valid = False
+        if User.is_duplicate({"em": form['em']}):
+            flash("Email is already registered with another account.", 'register3')
+            valid = False
+        if not User.validate_pass(form['pas']):
+            flash("Password must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character!", 'register4')
+            valid = False
+        if form['pas'] != form['cpas']:
+            flash("Passwords do not match!", 'register4')
+            valid = False
+        return valid
+
+    @staticmethod
+    def validate_login(form):
+        valid = True
+        user_in_db = User.get_by_email({"em": form["em"]})
+        if not user_in_db:
+            flash("Invalid Email/Password", 'login')
+            valid = False
+            return valid
+        if not bcrypt.check_password_hash(user_in_db.password, form['pas']):
+            flash("Invalid Email/Password", 'login')
+            valid = False
+            return valid
+        if valid == True:
+            session['user_id'] = user_in_db.id
+            session['first_name'] = user_in_db.first_name
+            session['last_name'] = user_in_db.last_name
+        return valid
